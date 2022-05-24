@@ -42,11 +42,11 @@ const randomBtn = document.querySelector('.random-btn')
 let curretItem = 0
 
 window.addEventListener('DOMContentLoaded', () => {
-  showPerson(curretItem)
+  showPerson()
 })
 
-function showPerson(person) {
-  const item = reviews[person]
+function showPerson() {
+  const item = reviews[curretItem]
   img.src = item.img
   author.textContent = item.name
   job.textContent = item.job
@@ -55,18 +55,17 @@ function showPerson(person) {
 
 nextBtn.addEventListener('click', () => {
   curretItem++
-  console.log(curretItem)
-  if (curretItem == reviews.length) curretItem = 0
-  showPerson(curretItem)
+  if (curretItem > reviews.length - 1) curretItem = 0
+  showPerson()
 })
 
 prevBtn.addEventListener('click', () => {
   curretItem--
-  if (curretItem < 0) curretItem = 3
-  showPerson(curretItem)
+  if (curretItem < 0) curretItem = reviews.length - 1
+  showPerson()
 })
 
 randomBtn.addEventListener('click', () => {
   curretItem = Math.floor(Math.random() * reviews.length)
-  showPerson(curretItem)
+  showPerson()
 })
